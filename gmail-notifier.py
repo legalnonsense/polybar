@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 
 # Importing required libraries
 from googleapiclient import discovery
@@ -18,15 +18,8 @@ if not creds or creds.invalid:
     
 GMAIL = discovery.build('gmail', 'v1', http=creds.authorize(Http()))
 
+qx=GMAIL.users().messages().list(userId='me', q='category:primary in:inbox is:unread').execute()
+number = qx['resultSizeEstimate']
+sys.stdout.write(number)
 
-def check_mail():
-
-    qx=GMAIL.users().messages().list(userId='me', q='category:primary in:inbox is:unread').execute()
-    number = qx['resultSizeEstimate']
-
-    print(number)
-
-
-while True:
-    check_mail()
-    time.sleep(10)
+    

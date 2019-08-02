@@ -15,6 +15,7 @@
 ;
 ;==========================================================
 
+
 [colors]
 ;background = ${xrdb:color0:#222}
 background = #222
@@ -22,7 +23,7 @@ background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #ffb52a
+primary = #3366ff
 secondary = #e60053
 alert = #bd2c40
 
@@ -50,11 +51,11 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Iosevka Nerd Font:antialias=true:size=13;2"
+font-0 = "Iosevka Nerd Font:antialias=true:size=11;2"
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = org-clock gmail
+modules-left = org-clock 
 ;modules-center = mpd
 modules-right = pulseaudio memory cpu temperature date
 
@@ -100,7 +101,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Iosevka Nerd Font:antialias=true:size=13;2"
+font-0 = "Iosevka Nerd Font:antialias=true:size=11;2"
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 bottom = true 
@@ -264,9 +265,9 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "礪 "
 format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-underline = #49aaff
 label = %percentage_used%%
 
 [module/wlan]
@@ -309,15 +310,14 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 
-date =
+date = " %Y-%m-%d"
 date-alt = " %Y-%m-%d"
 
 time = %H:%M
 time-alt = %H:%M:%S
-
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -327,20 +327,20 @@ label = %date% %time%
 type = internal/pulseaudio
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+label-volume = 奔 %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
+label-muted = 婢 muted
 label-muted-foreground = #666
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${colors.primary}
+bar-volume-foreground-1 = ${colors.primary}
+bar-volume-foreground-2 = ${colors.primary}
+bar-volume-foreground-3 = ${colors.primary}
+bar-volume-foreground-4 = ${colors.primary}
+bar-volume-foreground-5 = ${colors.primary}
+bar-volume-foreground-6 = ${colors.primary}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -413,7 +413,7 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 140
 
-format = <ramp> <label>
+format =  <label>
 format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
@@ -480,8 +480,9 @@ margin-bottom = 5
 type = custom/script
 exec = /home/jeff/.config/polybar/polybar-org-clock.py
 interval = 2
+format-underline = ${colors.primary}
 
 [module/gmail]
 type = custom/script
-exec = python ~/.config/polybar/gmail-notifier.py
+exec = /home/jeff/.config/polybar/gmail-notifier.py
 tail = true
